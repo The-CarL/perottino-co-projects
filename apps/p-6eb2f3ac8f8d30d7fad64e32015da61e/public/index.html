@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Country Code Desk</title>
+  <style>
+    body { margin: 0; background: #f4f7fb; color: #172b43; font: 1rem/1.5 system-ui, sans-serif; }
+    main { max-width: 36rem; margin: 3rem auto; padding: 0 1.25rem; }
+    h1 { line-height: 1.2; margin-bottom: .5rem; }
+    label { display: block; font-weight: 650; margin-bottom: .5rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: .75rem; }
+    input, button { font: inherit; border: 1px solid #526882; border-radius: .4rem; padding: .55rem .75rem; }
+    input { flex: 1 1 12rem; min-width: 0; color: inherit; background: #fff; }
+    button { background: #173c68; color: #fff; cursor: pointer; }
+    :focus-visible { outline: 3px solid #0b56ab; outline-offset: 3px; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; justify-content: space-between; gap: 1rem; background: #fff; border: 1px solid #b8c7d8; border-radius: .4rem; padding: .7rem 1rem; margin-bottom: .5rem; }
+    strong { letter-spacing: .08em; }
+  </style>
+  <script src="./lookup.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Country Code Desk</h1>
+    <p>Look up ISO 3166-1 alpha-2 codes for Canada, Mexico, and the United States. To use this app offline, keep this page and lookup.js in the same folder.</p>
+    <label for="country-filter">Country name or two-letter code</label>
+    <div class="controls">
+      <input id="country-filter" type="text" autocomplete="off" spellcheck="false">
+      <button id="clear-filter" type="button">Clear filter</button>
+    </div>
+    <h2>Results</h2>
+    <p id="result-status" role="status"></p>
+    <ul id="country-results" role="list"></ul>
+  </main>
+</body>
+</html>
