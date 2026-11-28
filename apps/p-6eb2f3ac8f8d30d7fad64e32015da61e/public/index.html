@@ -18,11 +18,12 @@
     li { display: flex; justify-content: space-between; gap: 1rem; background: #fff; border: 1px solid #b8c7d8; border-radius: .4rem; padding: .7rem 1rem; margin-bottom: .5rem; }
     strong { letter-spacing: .08em; }
   </style>
+  <script src="./lookup.js" defer></script>
 </head>
 <body>
   <main>
     <h1>Country Code Desk</h1>
-    <p>Look up ISO 3166-1 alpha-2 codes for Canada, Mexico, and the United States. No internet connection needed.</p>
+    <p>Look up ISO 3166-1 alpha-2 codes for Canada, Mexico, and the United States. To use this app offline, keep this page and lookup.js in the same folder.</p>
     <label for="country-filter">Country name or two-letter code</label>
     <div class="controls">
       <input id="country-filter" type="text" autocomplete="off" spellcheck="false">
@@ -32,43 +33,5 @@
     <p id="result-status" role="status"></p>
     <ul id="country-results" role="list"></ul>
   </main>
-  <script>
-    'use strict';
-    const countries = [
-      ['Canada', 'CA'],
-      ['Mexico', 'MX'],
-      ['United States', 'US'],
-    ];
-    const filter = document.getElementById('country-filter');
-    const clear = document.getElementById('clear-filter');
-    const status = document.getElementById('result-status');
-    const results = document.getElementById('country-results');
-
-    function render() {
-      const query = filter.value.trim().toLowerCase();
-      const matches = countries.filter(([name, code]) =>
-        name.toLowerCase().includes(query) || code.toLowerCase() === query
-      );
-      results.replaceChildren(...matches.map(([name, code]) => {
-        const row = document.createElement('li');
-        const label = document.createElement('span');
-        const badge = document.createElement('strong');
-        label.textContent = name;
-        badge.textContent = code;
-        row.append(label, badge);
-        return row;
-      }));
-      status.textContent = matches.length === 0 ? 'No matching countries.' :
-        `${matches.length} ${matches.length === 1 ? 'country' : 'countries'} found.`;
-    }
-
-    filter.addEventListener('input', render);
-    clear.addEventListener('click', () => {
-      filter.value = '';
-      render();
-      filter.focus();
-    });
-    render();
-  </script>
 </body>
 </html>
